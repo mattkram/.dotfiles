@@ -1,4 +1,4 @@
-vim.g.mapleader = " "
+-- View the netrw directory tree thingy
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- Scroll up and down by page and center the view
