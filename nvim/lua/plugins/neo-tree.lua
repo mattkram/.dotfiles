@@ -8,7 +8,9 @@ return {
     },
     config = function()
         require("neo-tree").setup({
+            close_if_last_window = false,
             filesystem = {
+                hijack_netrw_behavior = "open_current",
                 filtered_items = {
                     visible = false,
                     show_hidden_count = true,
