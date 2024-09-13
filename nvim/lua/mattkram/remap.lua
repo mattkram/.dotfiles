@@ -5,6 +5,10 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
+-- Scroll the screen while also moving the cursor to stay in same location
+vim.keymap.set("n", "<C-Y>", "<C-y>k")
+vim.keymap.set("n", "<C-E>", "<C-e>j")
+
 -- Search term stays in the center line
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
