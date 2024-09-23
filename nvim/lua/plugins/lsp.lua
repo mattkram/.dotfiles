@@ -10,9 +10,10 @@ return {
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
-                    "lua_ls",
                     "jedi_language_server",
+                    "lua_ls",
                     "ruff",
+                    "rust_analyzer",
                 }
             })
         end
@@ -54,8 +55,8 @@ return {
             })
 
             -- Add configuration for the individual language servers
-            lspconfig.lua_ls.setup({})
             lspconfig.jedi_language_server.setup({})
+            lspconfig.lua_ls.setup({})
             lspconfig.ruff.setup({})
             lspconfig.rust_analyzer.setup({})
 
