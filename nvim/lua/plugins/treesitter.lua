@@ -3,18 +3,24 @@ return {
     build = ":TSUpdate",
     config = function()
         local configs = require("nvim-treesitter.configs")
+        vim.filetype.add({
+            filename = {
+                ['Tiltfile'] = 'starlark',
+            },
+        })
 
         configs.setup({
             ensure_installed = {
                 "c",
+                "go",
+                "html",
+                "javascript",
                 "lua",
+                "python",
+                "query",
+                "starlark",
                 "vim",
                 "vimdoc",
-                "query",
-                "javascript",
-                "html",
-                "python",
-                "go",
             },
             auto_install = true,
             sync_install = false,
