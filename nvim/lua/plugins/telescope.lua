@@ -6,6 +6,14 @@ return {
         config = function()
             local telescope = require('telescope')
             telescope.setup {
+                defaults = {
+                    file_ignore_patterns = {
+                        ".git/",
+                        "env/",
+                        "node_modules/",
+                        "submodules/",
+                    }
+                },
                 pickers = {
                     find_files = {
                         hidden = true
