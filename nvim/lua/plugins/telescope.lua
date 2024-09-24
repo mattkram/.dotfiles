@@ -12,6 +12,8 @@ return {
                         "env/",
                         "node_modules/",
                         "submodules/",
+                        ".*%.egg%-info",
+                        "__pycache__",
                     }
                 },
                 pickers = {
