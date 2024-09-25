@@ -1,0 +1,1 @@
+# This file removes the "Last login" message when launching zsh. Place it at ~/.hushlogin

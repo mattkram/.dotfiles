@@ -1,0 +1,24 @@
+#!/bin/bash
+
+alias ls="ls -G"
+alias ll="ls -alF"
+alias cll="clear; ll"
+alias la="ls -A"
+alias l="ls -CF"
+alias clc="clear"
+
+alias ca="conda activate ./env"
+alias kc="kubectl"
+alias tf="terraform"
+
+# Git shortcuts
+alias kickci="git pull && git commit --allow-empty -m \"Kick CI\" && git push"
+alias pr="git push && gh pr create --web"
+alias dstat="git pull --tags --force && git log --oneline --tags -n 100"
+
+# Vim/Neovim
+alias vi="vim"
+alias vim="nvim"
+alias vh="nvim ."
+alias vf="fuzzy-vim . && history -n"
+alias tmls="tmux ls"
