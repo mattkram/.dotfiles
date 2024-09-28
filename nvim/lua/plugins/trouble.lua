@@ -1,6 +1,17 @@
 return {
     "folke/trouble.nvim",
-    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    opts = {
+        modes = {
+            symbols = {
+                win = {
+                    type = "split",
+                    relative = "win",
+                    position = "right",
+                    size = 0.3,
+                },
+            },
+        },
+    },
     cmd = "Trouble",
     keys = {
         {
@@ -20,7 +31,7 @@ return {
         },
         {
             "<leader>cl",
-            "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+            "<cmd>Trouble lsp toggle focus=false<cr>",
             desc = "LSP Definitions / references / ... (Trouble)",
         },
         {
