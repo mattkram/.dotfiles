@@ -27,8 +27,8 @@ vim.keymap.set("n", "J", "mzJ`z")
 -- Disable quite with capital Q
 vim.keymap.set("n", "Q", "<nop>")
 
--- TODO: When I start using tmux
--- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+-- Launch tmux-sessionizer from within Neovim
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 -- Start a replace pattern on the current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
