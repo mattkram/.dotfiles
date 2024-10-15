@@ -86,7 +86,6 @@ plugins=(
     pre-commit
     brew
     python
-    poetry
     conda-zsh-completion
 )
 
