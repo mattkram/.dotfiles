@@ -6,8 +6,6 @@ else
     selected=$(find ~/dev -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
-echo "selected =" $selected
-
 if [[ -z $selected ]]; then
     exit 0
 fi
@@ -15,13 +13,7 @@ fi
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
-echo "TMUX =" $TMUX
-echo "selected_name =" $selected_name
-echo "tmux_running =" $tmux_running
-
-
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    echo "HERE"
     tmux new-session -s $selected_name -c $selected
     exit 0
 fi
