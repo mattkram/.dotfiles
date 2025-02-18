@@ -22,3 +22,9 @@ alias vim="nvim"
 alias vh="nvim ."
 alias vf="fuzzy-vim . && history -n"
 alias tmls="tmux ls"
+
+function reset-base() {
+    conda install -n base --rev 0 --yes && \
+        conda update -n base conda -y && \
+        conda env update -n base -f /opt/miniconda3/environment.yml
+}
