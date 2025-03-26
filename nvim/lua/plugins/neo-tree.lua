@@ -22,7 +22,13 @@ return {
                     },
                     never_show = {},
                 },
-            }
+            },
+            window = {
+                mappings = {
+                    -- Disable C-f so it doesn't conflict with tmux-sessionizer shortcut
+                    ["<C-f>"] = false
+                }
+            },
         })
         vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal left toggle=true<CR>')
     end
