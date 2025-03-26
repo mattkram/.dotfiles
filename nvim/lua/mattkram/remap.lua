@@ -17,6 +17,12 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Convenience wrappers for navigating split windows
+vim.keymap.set('n', '<A-h>', '<C-w>h', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-j>', '<C-w>j', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-k>', '<C-w>k', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-l>', '<C-w>l', { noremap = true, silent = true })
+
 -- Concatenate with next line but don't move the cursor
 vim.keymap.set("n", "J", "mzJ`z")
 

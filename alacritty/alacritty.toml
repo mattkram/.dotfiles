@@ -240,7 +240,7 @@ dynamic_padding = false
 opacity = 0.9
 # startup_mode = "Windowed" | "Maximized" | "Fullscreen" | "SimpleFullscreen"
 startup_mode = "Maximized"
-
+option_as_alt = "Both"
 
 [window.padding]
 x = 10
