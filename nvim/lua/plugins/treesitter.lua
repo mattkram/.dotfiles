@@ -10,10 +10,21 @@ return {
                 },
             })
 
+            -- Automatically register template files marked as mustache format as helm
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "mustache" },
+                callback = function()
+                    if vim.fn.expand("%:e") == "tpl" then
+                        vim.bo.filetype = "helm"
+                    end
+                end,
+            })
+
             configs.setup({
                 ensure_installed = {
                     "c",
                     "go",
+                    "helm",
                     "html",
                     "javascript",
                     "lua",
@@ -22,6 +33,7 @@ return {
                     "starlark",
                     "vim",
                     "vimdoc",
+                    "yaml",
                 },
                 auto_install = true,
                 sync_install = false,
@@ -32,6 +44,18 @@ return {
                 indent = {
                     enable = true,
                 },
+            })
+            vim.filetype.add({
+                pattern = {
+                    [".*%.yaml"] = "yaml",
+                    [".*%.yml"] = "yaml",
+                    -- Specific patterns for Kubernetes
+                    [".*/templates/.*%.yaml"] = "helm",
+                    [".*/templates/.*%.yml"] = "helm",
+                    [".*/templates/.*%.tpl"] = "helm",
+                    -- Helm values files
+                    [".*values.*%.yaml"] = "yaml.helm",
+                }
             })
         end
     },
