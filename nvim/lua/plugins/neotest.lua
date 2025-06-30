@@ -16,6 +16,12 @@ return {
                     pytest_discover_instances = true,
                 })
             },
+            output_panel = {
+                open = 'botright vsplit | vertical resize 80'
+            },
+            summary = {
+                open = 'botright vsplit | vertical resize 50'
+            },
             discovery = {
                 filter_dir = function(name, rel_path, root)
                     return name ~= "env"
