@@ -51,7 +51,8 @@ return {
                     vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
                     vim.keymap.set({ "n", "x" }, "<leader>fc", function() vim.lsp.buf.format({ async = true }) end, opts)
                     vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-                    vim.keymap.set({ "n", "v" }, "<leader>fa", function() vim.lsp.buf.code_action({ async = true, apply = true }) end, opts)
+                    vim.keymap.set({ "n", "v" }, "<leader>fa",
+                        function() vim.lsp.buf.code_action({ async = true, apply = true }) end, opts)
                 end,
             })
 
