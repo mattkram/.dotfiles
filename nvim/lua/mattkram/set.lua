@@ -38,5 +38,14 @@ vim.opt.updatetime = 50
 -- Draw a colored fill at the end of the line
 vim.opt.colorcolumn = "88"
 
+-- Ensure good line break behavior in Markdown files
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown",
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.linebreak = true
+    end,
+})
+
 -- Set global keymapping leader to space
 vim.g.mapleader = " "
