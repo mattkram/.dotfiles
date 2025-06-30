@@ -237,7 +237,7 @@ mods = "Command"
 [window]
 decorations = "buttonless"
 dynamic_padding = false
-opacity = 0.9
+opacity = 1.0
 # startup_mode = "Windowed" | "Maximized" | "Fullscreen" | "SimpleFullscreen"
 startup_mode = "Maximized"
 option_as_alt = "Both"
