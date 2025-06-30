@@ -7,6 +7,8 @@ return {
             local telescope = require('telescope')
             telescope.setup {
                 defaults = {
+                    layout_strategy = 'horizontal',
+                    layout_config = { height = 0.95, width = 0.95, },
                     file_ignore_patterns = {
                         ".git/",
                         "env/",
@@ -37,6 +39,11 @@ return {
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
             vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
             vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+            vim.keymap.set("n", "<leader>fr", require("telescope.builtin").resume, {
+                noremap = true,
+                silent = true,
+                desc = "Resume",
+            })
         end
     },
     {
