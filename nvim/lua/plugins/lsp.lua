@@ -58,6 +58,7 @@ return {
 
             -- Add configuration for the individual language servers
             lspconfig.jedi_language_server.setup({})
+            lspconfig.gopls.setup({})
             lspconfig.lua_ls.setup({})
             lspconfig.ruff.setup({})
             lspconfig.rust_analyzer.setup({})
