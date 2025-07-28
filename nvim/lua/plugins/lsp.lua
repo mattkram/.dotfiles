@@ -62,6 +62,8 @@ return {
             lspconfig.lua_ls.setup({})
             lspconfig.ruff.setup({})
             lspconfig.rust_analyzer.setup({})
+            lspconfig.tflint.setup({})
+            lspconfig.terraformls.setup({})
 
             -- Autocompletion setup
             local cmp = require('cmp')
