@@ -12,6 +12,7 @@ alias kc="kubectl"
 alias tf="terraform"
 
 # Git shortcuts
+alias lg="lazygit"
 alias kickci="git pull && git commit --allow-empty -m \"Kick CI\" && git push"
 alias pr="git push && gh pr create --web"
 alias dstat="git pull --tags --force && git log --oneline --tags -n 100"
