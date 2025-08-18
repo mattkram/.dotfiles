@@ -41,3 +41,22 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 -- Make the current file executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- Function to toggle line numbers
+local function toggle_line_numbers()
+    if vim.wo.number or vim.wo.relativenumber then
+        vim.wo.number = false
+        vim.wo.relativenumber = false
+        print("Line numbers disabled")
+    else
+        vim.wo.number = true
+        vim.wo.relativenumber = true
+        print("Line numbers enabled")
+    end
+end
+
+-- Set the keymap to toggle line numbers
+vim.keymap.set('n', '<A-n>', toggle_line_numbers, {
+    desc = 'Toggle line numbers',
+    silent = true
+})
