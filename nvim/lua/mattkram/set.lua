@@ -47,5 +47,12 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+-- Register .env files for formatting
+vim.filetype.add({
+    pattern = {
+        ['%.env%-.*'] = 'sh',
+    }
+})
+
 -- Set global keymapping leader to space
 vim.g.mapleader = " "
