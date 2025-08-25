@@ -13,13 +13,31 @@ fi
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
+# Specify a config file path we will search
+tmux_config="$selected/.tmux.conf"
+
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
+    # Start new tmux session in detached mode
+    tmux new-session -s $selected_name -c $selected -d
+
+    # Source the local config if it exists
+    if [[ -f $tmux_config ]]; then
+        tmux source-file $tmux_config
+    fi
+
+    # Attach to the session
+    tmux attach-session -t $selected_name
     exit 0
 fi
 
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
+    # Create new session in detached mode
     tmux new-session -ds $selected_name -c $selected
+
+    # Source the local config if it exists
+    if [[ -f $tmux_config ]]; then
+        tmux source-file $tmux_config
+    fi
 fi
 
 # tmux switch-client -t $selected_name
