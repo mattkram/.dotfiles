@@ -8,6 +8,9 @@ return {
                 filename = {
                     ['Tiltfile'] = 'starlark',
                 },
+                pattern = {
+                    ['Tiltfile.*'] = 'starlark',
+                },
             })
 
             -- Automatically register template files marked as mustache format as helm
