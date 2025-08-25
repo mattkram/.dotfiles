@@ -4,6 +4,8 @@ return {
         build = ":TSUpdate",
         config = function()
             local configs = require("nvim-treesitter.configs")
+
+            -- Register Tiltfiles for formatting
             vim.filetype.add({
                 filename = {
                     ['Tiltfile'] = 'starlark',
@@ -11,6 +13,13 @@ return {
                 pattern = {
                     ['Tiltfile.*'] = 'starlark',
                 },
+            })
+
+            -- Register .env files for formatting
+            vim.filetype.add({
+                pattern = {
+                    ['%.env%-.*'] = 'sh',
+                }
             })
 
             -- Automatically register template files marked as mustache format as helm
