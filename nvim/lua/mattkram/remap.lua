@@ -60,3 +60,30 @@ vim.keymap.set('n', '<A-n>', toggle_line_numbers, {
     desc = 'Toggle line numbers',
     silent = true
 })
+
+-- Function to globally find and replace the current word
+local function global_find_replace()
+    -- Get the current word under cursor
+    local word = vim.fn.expand("<cword>")
+
+    -- Check if there's a word under cursor
+    if word == "" then
+        vim.notify("No word under cursor", vim.log.levels.WARN)
+        return
+    end
+
+    -- Escape special characters for regex
+    local escaped_word = vim.fn.escape(word, "[[\\/.*$^~[]]]")
+
+    -- Create the substitution command
+    local cmd = string.format("%%s/\\<%s\\>//gc", escaped_word)
+
+    -- Set up the command line with the substitution ready
+    vim.fn.feedkeys(":" .. cmd .. vim.api.nvim_replace_termcodes("<Left><Left><Left>", true, false, true), "n")
+end
+
+-- Create the keybind
+vim.keymap.set("n", "<C-a>", global_find_replace, {
+    desc = "Global find and replace current word",
+    silent = true
+})
