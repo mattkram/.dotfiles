@@ -24,7 +24,7 @@ return {
             },
             discovery = {
                 filter_dir = function(name, rel_path, root)
-                    return name ~= "env"
+                    return name ~= "env" and name ~= "submodules"
                 end,
             },
         })
