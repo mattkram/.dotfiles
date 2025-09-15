@@ -22,6 +22,13 @@ return {
                 }
             })
 
+            -- Register .env files for formatting
+            vim.filetype.add({
+                pattern = {
+                    ['%.tmux%..*'] = 'bash',
+                }
+            })
+
             -- Automatically register template files marked as mustache format as helm
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = { "mustache" },
