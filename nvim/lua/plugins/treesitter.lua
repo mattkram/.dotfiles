@@ -66,8 +66,6 @@ return {
             })
             vim.filetype.add({
                 pattern = {
-                    [".*%.yaml"] = "yaml",
-                    [".*%.yml"] = "yaml",
                     -- Specific patterns for Kubernetes
                     [".*/templates/.*%.yaml"] = "helm",
                     [".*/templates/.*%.yml"] = "helm",
