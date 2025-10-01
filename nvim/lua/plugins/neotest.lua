@@ -29,6 +29,10 @@ return {
             },
         })
         vim.keymap.set('n', '<leader>tr', function() neotest.run.run() end)
+        vim.keymap.set('n', '<leader>tt', function()
+            vim.cmd.write()
+            neotest.run.run()
+        end)
         vim.keymap.set('n', '<leader>ta', function() neotest.run.run(vim.fn.getcwd()) end)
         vim.keymap.set('n', '<leader>tf', function() neotest.run.run(vim.fn.expand("%")) end)
         vim.keymap.set('n', '<leader>ts', function() neotest.summary.toggle() end)
