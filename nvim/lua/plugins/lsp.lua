@@ -1,5 +1,41 @@
 return {
     {
+        'stevearc/conform.nvim',
+        event = { 'BufWritePre' },
+        cmd = { 'ConformInfo' },
+        opts = {
+            formatters_by_ft = {
+                javascript = { 'prettier' },
+                javascriptreact = { 'prettier' },
+                typescript = { 'prettier' },
+                typescriptreact = { 'prettier' },
+            },
+            format_on_save = {
+                timeout_ms = 500,
+                lsp_fallback = true,
+            },
+        },
+    },
+    {
+        'mfussenegger/nvim-lint',
+        event = { 'BufReadPre', 'BufNewFile' },
+        config = function()
+            local lint = require('lint')
+            lint.linters_by_ft = {
+                javascript = { 'eslint' },
+                javascriptreact = { 'eslint' },
+                typescript = { 'eslint' },
+                typescriptreact = { 'eslint' },
+            }
+
+            -- vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+            --     callback = function()
+            --         require('lint').try_lint()
+            --     end,
+            -- })
+        end,
+    },
+    {
         "williamboman/mason.nvim",
         config = function()
             require("mason").setup()
@@ -64,6 +100,7 @@ return {
             lspconfig.rust_analyzer.setup({})
             lspconfig.tflint.setup({})
             lspconfig.terraformls.setup({})
+            lspconfig.ts_ls.setup({})
 
             -- Autocompletion setup
             local cmp = require('cmp')
