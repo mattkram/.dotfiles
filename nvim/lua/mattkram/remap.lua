@@ -26,9 +26,11 @@ vim.keymap.set('n', '<A-l>', '<C-w>l', { noremap = true, silent = true })
 -- Concatenate with next line but don't move the cursor
 vim.keymap.set("n", "J", "mzJ`z")
 
--- Yank to the system clipboard (broken)
--- vim.keymap.set("v", "<leader>y", "\"*y")
--- vim.keymap.set("n", "<leader>Y", "\"+Y")
+-- Enable system clipboard
+vim.opt.clipboard = 'unnamedplus'
+
+-- Yank to the system clipboard
+vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
 
 -- Disable quite with capital Q
 vim.keymap.set("n", "Q", "<nop>")
