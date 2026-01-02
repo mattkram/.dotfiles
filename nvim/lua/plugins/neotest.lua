@@ -36,6 +36,7 @@ return {
         vim.keymap.set('n', '<leader>ta', function() neotest.run.run(vim.fn.getcwd()) end)
         vim.keymap.set('n', '<leader>tf', function() neotest.run.run(vim.fn.expand("%")) end)
         vim.keymap.set('n', '<leader>ts', function() neotest.summary.toggle() end)
+        vim.keymap.set("n", "<leader>tr", function() neotest.run.run_last() end, { desc = "Re-run last test" })
         vim.keymap.set('n', '<leader>td', function() neotest.output_panel.toggle() end)
     end
 }
