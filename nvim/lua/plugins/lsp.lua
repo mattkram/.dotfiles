@@ -9,6 +9,8 @@ return {
                 javascriptreact = { 'prettier' },
                 typescript = { 'prettier' },
                 typescriptreact = { 'prettier' },
+                html = { 'prettier' },
+                htmldjango = { 'prettier' },
             },
             format_on_save = {
                 timeout_ms = 500,
