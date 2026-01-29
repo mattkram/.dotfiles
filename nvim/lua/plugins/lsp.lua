@@ -104,14 +104,14 @@ return {
             })
 
             -- Add configuration for the individual language servers
-            lspconfig.jedi_language_server.setup({})
-            lspconfig.gopls.setup({})
-            lspconfig.lua_ls.setup({})
-            lspconfig.ruff.setup({})
-            lspconfig.rust_analyzer.setup({})
-            lspconfig.tflint.setup({})
-            lspconfig.terraformls.setup({})
-            lspconfig.ts_ls.setup({})
+            vim.lsp.enable('jedi_language_server')
+            vim.lsp.enable('gopls')
+            vim.lsp.enable('lua_ls')
+            vim.lsp.enable('ruff')
+            vim.lsp.enable('rust_analyzer')
+            vim.lsp.enable('tflint')
+            vim.lsp.enable('terraformls')
+            vim.lsp.enable('ts_ls')
 
             -- Autocompletion setup
             local cmp = require('cmp')
