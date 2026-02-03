@@ -6,7 +6,6 @@
   "lua-language-server": "3.13.9",
   "mypy": "1.15.0",
   "prettier": "3.7.4",
-  "python-lsp-server": "1.12.2",
   "ruff": "0.14.10",
   "rust-analyzer": "2025-03-17",
   "terraform-ls": "v0.36.5",
