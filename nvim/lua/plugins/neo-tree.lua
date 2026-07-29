@@ -29,6 +29,16 @@ return {
                     ["<C-f>"] = false
                 }
             },
+            event_handlers = {
+                -- Enable relative line numbers when neo-tree pane is opened
+                {
+                    event = "neo_tree_buffer_enter",
+                    handler = function()
+                        vim.opt_local.relativenumber = true
+                        vim.opt_local.number = true
+                    end,
+                }
+            },
         })
         vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal left toggle=true<CR>')
     end
