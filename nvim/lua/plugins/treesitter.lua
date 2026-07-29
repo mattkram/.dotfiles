@@ -79,6 +79,8 @@ return {
                     [".*/templates/.*%.tpl"] = "helm",
                     -- Helm values files
                     [".*values.*%.yaml"] = "yaml.helm",
+                    -- conda recipes
+                    ['.*meta%.yaml'] = 'yaml.conda',
                 }
             })
         end
