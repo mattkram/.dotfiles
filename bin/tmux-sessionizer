@@ -18,7 +18,7 @@ tmux_config="$selected/.tmux.conf"
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     # Start new tmux session in detached mode with first window named 'nvim'
-    tmux new-session -d -s $selected_name -c $selected -n 'nvim'
+    tmux new-session -d -s $selected_name -c $selected -n 'nvim' 'nvim .; exec zsh'
 
     # Source the local config if it exists
     if [[ -f $tmux_config ]]; then
@@ -26,9 +26,7 @@ if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     fi
 
     # Set up default layout: nvim, claude, zsh
-    tmux send-keys -t $selected_name:nvim 'nvim .' Enter
-    tmux new-window -t $selected_name -c $selected -n 'claude'
-    tmux send-keys -t $selected_name:claude 'claude' Enter
+    tmux new-window -t $selected_name -c $selected -n 'claude' 'claude; exec zsh'
     tmux new-window -t $selected_name -c $selected -n 'zsh'
     tmux select-window -t $selected_name:nvim
 
@@ -39,7 +37,7 @@ fi
 
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
     # Create new session in detached mode with first window named 'nvim'
-    tmux new-session -d -s $selected_name -c $selected -n 'nvim'
+    tmux new-session -d -s $selected_name -c $selected -n 'nvim' 'nvim .; exec zsh'
 
     # Source the local config if it exists
     if [[ -f $tmux_config ]]; then
@@ -47,9 +45,7 @@ if ! tmux has-session -t=$selected_name 2> /dev/null; then
     fi
 
     # Set up default layout: nvim, claude, zsh
-    tmux send-keys -t $selected_name:nvim 'nvim .' Enter
-    tmux new-window -t $selected_name -c $selected -n 'claude'
-    tmux send-keys -t $selected_name:claude 'claude' Enter
+    tmux new-window -t $selected_name -c $selected -n 'claude' 'claude; exec zsh'
     tmux new-window -t $selected_name -c $selected -n 'zsh'
     tmux select-window -t $selected_name:nvim
 fi

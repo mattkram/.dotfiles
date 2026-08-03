@@ -8,6 +8,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# We need to set the DISPLAY to allow copying from Neovim into the system clipboard
+export DISPLAY=:0
+
 # If you come from bash you might have to change your $PATH.
  export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -140,9 +143,6 @@ zstyle ':completion::complete:*' use-cache 1
 #zstyle ":conda_zsh_completion:*" sort-envs-by-time true
 #zstyle ":conda_zsh_completion:*" show-global-envs-first true
 
-# Created by `pipx` on 2022-12-06 15:10:09
-export PATH="$PATH:/Users/mattkram/.local/bin"
-
 # Add go binaries to PATH
 export PATH="$PATH:/Users/mattkram/go/bin"
 
@@ -159,19 +159,55 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/mattkram/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+# Add pixi global environments to the path
+export PATH="/Users/mattkram/.pixi/bin:$PATH"
+
+# Lazy-load conda - call `init-miniconda` to initialize
+function init-miniconda {
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/Users/mattkram/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
     else
-        export PATH="/opt/miniconda3/bin:$PATH"
+        if [ -f "/Users/mattkram/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/Users/mattkram/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/mattkram/miniconda3/bin:$PATH"
+        fi
     fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+    unset __conda_setup
+    # <<< conda initialize <<<
+}
+
+# Initialize miniconda by default
+init-miniconda
+
+function blank-slate {
+    # Start a subshell with a minimal, controlled PATH
+    export BLANK_SLATE_MODE=1
+    export BLANK_SLATE_PATH="$HOME/dev/ana-cli/target/release:$HOME/.ana/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    exec zsh
+}
 
 bindkey -s '^f' 'tmux-sessionizer\n'
+
+# opencode
+export PATH=/Users/mattkram/.opencode/bin:$PATH
+
+# ana
+export PATH="/Users/mattkram/.ana/bin:/Users/mattkram/.local/bin:$PATH"
+
+# Override PATH when in blank-slate mode
+if [[ -n "$BLANK_SLATE_MODE" ]]; then
+    export PATH="$BLANK_SLATE_PATH"
+fi
+
+# kilo
+export PATH=/Users/mattkram/.kilo/bin:$PATH
