@@ -130,8 +130,6 @@ fpath=(~/.zsh $fpath)
 autoload -Uz compinit && compinit
 export GPG_TTY=$(tty)
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
 
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
@@ -155,23 +153,21 @@ export PATH=$HOME/dev/.dotfiles/bin:$PATH
 # Load any tokens from another file
 [[ ! -f ~/.tokenrc ]] || source ~/.tokenrc
 
+# Lazy-load nvm - call `init-nvm` to initialize
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+function init-nvm {
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
 
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+# Docker CLI completions
 fpath=(/Users/mattkram/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
 
 # Add pixi global environments to the path
 export PATH="/Users/mattkram/.pixi/bin:$PATH"
 
-# Lazy-load conda - call `init-miniconda` to initialize
-function init-miniconda {
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
+# Lazy-load conda - initializes on first use
+function _init_conda {
     __conda_setup="$('/Users/mattkram/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
@@ -183,11 +179,13 @@ function init-miniconda {
         fi
     fi
     unset __conda_setup
-    # <<< conda initialize <<<
 }
 
-# Initialize miniconda by default
-init-miniconda
+function conda {
+    unfunction conda
+    _init_conda
+    conda "$@"
+}
 
 function blank-slate {
     # Start a subshell with a minimal, controlled PATH
