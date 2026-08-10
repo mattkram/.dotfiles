@@ -1,0 +1,2 @@
+cask "alacritty"
+brew "gh"
