@@ -4,7 +4,7 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 CONFIG_DIR="$HOME/.config"
 
-CONFIGS=(alacritty nvim)
+CONFIGS=(alacritty karabiner nvim)
 
 mkdir -p "$CONFIG_DIR"
 
@@ -21,3 +21,24 @@ for config in "${CONFIGS[@]}"; do
         echo "$config: linked"
     fi
 done
+
+link_file() {
+    local source="$1"
+    local target="$2"
+    local name="$3"
+
+    mkdir -p "$(dirname "$target")"
+
+    if [[ -L "$target" ]]; then
+        echo "$name: already linked"
+    elif [[ -e "$target" ]]; then
+        echo "$name: $target exists but is not a symlink, skipping"
+    else
+        ln -s "$source" "$target"
+        echo "$name: linked"
+    fi
+}
+
+link_file "$DOTFILES_DIR/rectangle/RectangleConfig.json" \
+    "$HOME/Library/Application Support/Rectangle/RectangleConfig.json" \
+    "rectangle"

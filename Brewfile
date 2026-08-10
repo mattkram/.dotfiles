@@ -1,4 +1,6 @@
 cask "1password"
 cask "alacritty"
+cask "karabiner-elements"
+cask "rectangle"
 cask "spotify"
 brew "gh"
