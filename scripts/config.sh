@@ -39,6 +39,17 @@ link_file() {
     fi
 }
 
-link_file "$DOTFILES_DIR/rectangle/RectangleConfig.json" \
+copy_file() {
+    local source="$1"
+    local target="$2"
+    local name="$3"
+
+    mkdir -p "$(dirname "$target")"
+    cp "$source" "$target"
+    chmod 600 "$target"
+    echo "$name: copied"
+}
+
+copy_file "$DOTFILES_DIR/rectangle/RectangleConfig.json" \
     "$HOME/Library/Application Support/Rectangle/RectangleConfig.json" \
     "rectangle"
