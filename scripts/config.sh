@@ -58,3 +58,13 @@ link_file "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc" "zshrc"
 link_file "$DOTFILES_DIR/zsh/.aliases" "$HOME/.aliases" "aliases"
 link_file "$DOTFILES_DIR/zsh/.p10k.zsh" "$HOME/.p10k.zsh" "p10k"
 link_file "$DOTFILES_DIR/zsh/.hushlogin" "$HOME/.hushlogin" "hushlogin"
+link_file "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf" "tmux"
+
+# Install TPM (tmux plugin manager) if not present
+TPM_DIR="$HOME/.tmux/plugins/tpm"
+if [[ ! -d "$TPM_DIR" ]]; then
+    echo "Installing TPM..."
+    git clone --depth=1 https://github.com/tmux-plugins/tpm "$TPM_DIR"
+else
+    echo "TPM: already installed"
+fi
