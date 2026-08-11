@@ -1,0 +1,11 @@
+[user]
+	name = mattkram
+	email = mkramer@anaconda.com
+[alias]
+	st = status
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = true
+[commit]
+	gpgsign = false

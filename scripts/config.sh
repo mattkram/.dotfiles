@@ -59,6 +59,7 @@ link_file "$DOTFILES_DIR/zsh/.aliases" "$HOME/.aliases" "aliases"
 link_file "$DOTFILES_DIR/zsh/.p10k.zsh" "$HOME/.p10k.zsh" "p10k"
 link_file "$DOTFILES_DIR/zsh/.hushlogin" "$HOME/.hushlogin" "hushlogin"
 link_file "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf" "tmux"
+link_file "$DOTFILES_DIR/git/.gitconfig" "$HOME/.gitconfig" "gitconfig"
 
 # Install TPM (tmux plugin manager) if not present
 TPM_DIR="$HOME/.tmux/plugins/tpm"
