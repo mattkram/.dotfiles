@@ -53,3 +53,8 @@ copy_file() {
 copy_file "$DOTFILES_DIR/rectangle/RectangleConfig.json" \
     "$HOME/Library/Application Support/Rectangle/RectangleConfig.json" \
     "rectangle"
+
+link_file "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc" "zshrc"
+link_file "$DOTFILES_DIR/zsh/.aliases" "$HOME/.aliases" "aliases"
+link_file "$DOTFILES_DIR/zsh/.p10k.zsh" "$HOME/.p10k.zsh" "p10k"
+link_file "$DOTFILES_DIR/zsh/.hushlogin" "$HOME/.hushlogin" "hushlogin"
