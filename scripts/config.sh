@@ -68,3 +68,7 @@ if [[ ! -d "$TPM_DIR" ]]; then
 else
     echo "TPM: already installed"
 fi
+
+# Install tmux plugins via TPM
+echo "Installing tmux plugins..."
+"$TPM_DIR/bin/install_plugins"
