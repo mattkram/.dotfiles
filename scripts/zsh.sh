@@ -16,3 +16,12 @@ if [[ ! -d "$P10K_DIR" ]]; then
 else
     echo "Powerlevel10k: already installed"
 fi
+
+# Install conda-zsh-completion plugin if not present
+CONDA_COMPLETION_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/conda-zsh-completion"
+if [[ ! -d "$CONDA_COMPLETION_DIR" ]]; then
+    echo "Installing conda-zsh-completion..."
+    git clone --depth=1 https://github.com/conda-incubator/conda-zsh-completion.git "$CONDA_COMPLETION_DIR"
+else
+    echo "conda-zsh-completion: already installed"
+fi
