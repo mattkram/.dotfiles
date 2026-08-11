@@ -7,12 +7,12 @@ echo "==> Installing system packages"
 "$SCRIPTS_DIR/brew.sh"
 
 echo ""
-echo "==> Setting up Zsh"
-"$SCRIPTS_DIR/zsh.sh"
-
-echo ""
 echo "==> Linking config files"
 "$SCRIPTS_DIR/config.sh"
+
+echo ""
+echo "==> Setting up Zsh"
+"$SCRIPTS_DIR/zsh.sh"
 
 echo ""
 echo "==> Configuring macOS"
