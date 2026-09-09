@@ -4,7 +4,17 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 CONFIG_DIR="$HOME/.config"
 
-CONFIGS=(alacritty karabiner nvim)
+case "$(uname -s)" in
+    Darwin) OS="macos" ;;
+    Linux)  OS="linux" ;;
+    *)
+        echo "Unsupported OS: $(uname -s)" >&2
+        exit 1
+        ;;
+esac
+
+CONFIGS=(alacritty nvim)
+[[ "$OS" == "macos" ]] && CONFIGS+=(karabiner)
 
 mkdir -p "$CONFIG_DIR"
 
@@ -50,9 +60,11 @@ copy_file() {
     echo "$name: copied"
 }
 
-copy_file "$DOTFILES_DIR/rectangle/RectangleConfig.json" \
-    "$HOME/Library/Application Support/Rectangle/RectangleConfig.json" \
-    "rectangle"
+if [[ "$OS" == "macos" ]]; then
+    copy_file "$DOTFILES_DIR/rectangle/RectangleConfig.json" \
+        "$HOME/Library/Application Support/Rectangle/RectangleConfig.json" \
+        "rectangle"
+fi
 
 link_file "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc" "zshrc"
 link_file "$DOTFILES_DIR/zsh/.aliases" "$HOME/.aliases" "aliases"
