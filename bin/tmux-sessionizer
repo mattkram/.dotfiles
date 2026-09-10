@@ -25,8 +25,8 @@ if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
         tmux source-file $tmux_config
     fi
 
-    # Set up default layout: nvim, claude, zsh
-    tmux new-window -t $selected_name -c $selected -n 'claude' 'claude; exec zsh'
+    # Set up default layout: nvim, opencode, zsh
+    tmux new-window -t $selected_name -c $selected -n 'opencode' 'opencode; exec zsh'
     tmux new-window -t $selected_name -c $selected -n 'zsh'
     tmux select-window -t $selected_name:nvim
 
@@ -44,8 +44,8 @@ if ! tmux has-session -t=$selected_name 2> /dev/null; then
         tmux source-file $tmux_config
     fi
 
-    # Set up default layout: nvim, claude, zsh
-    tmux new-window -t $selected_name -c $selected -n 'claude' 'claude; exec zsh'
+    # Set up default layout: nvim, opencode, zsh
+    tmux new-window -t $selected_name -c $selected -n 'opencode' 'opencode; exec zsh'
     tmux new-window -t $selected_name -c $selected -n 'zsh'
     tmux select-window -t $selected_name:nvim
 fi
