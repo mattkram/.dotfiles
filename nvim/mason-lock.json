@@ -1,5 +1,5 @@
 {
-  "jedi-language-server": "0.47.0",
+  "jedi-language-server": "0.46.0",
   "lua-language-server": "3.19.1",
   "ruff": "0.16.6",
   "rust-analyzer": "2026-09-07"
