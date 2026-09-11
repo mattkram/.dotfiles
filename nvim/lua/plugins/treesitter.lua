@@ -1,10 +1,9 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
+        lazy = false,
         build = ":TSUpdate",
         config = function()
-            local configs = require("nvim-treesitter.configs")
-
             -- Register Tiltfiles for formatting
             vim.filetype.add({
                 filename = {
@@ -46,31 +45,6 @@ return {
                 end,
             })
 
-            configs.setup({
-                ensure_installed = {
-                    "c",
-                    "go",
-                    "helm",
-                    "html",
-                    "javascript",
-                    "lua",
-                    "python",
-                    "query",
-                    "starlark",
-                    "vim",
-                    "vimdoc",
-                    "yaml",
-                },
-                auto_install = true,
-                sync_install = false,
-                highlight = {
-                    enable = true,
-                    additional_vim_regex_highlighting = false,
-                },
-                indent = {
-                    enable = true,
-                },
-            })
             vim.filetype.add({
                 pattern = {
                     -- Specific patterns for Kubernetes
@@ -82,6 +56,44 @@ return {
                     -- conda recipes
                     ['.*meta%.yaml'] = 'yaml.conda',
                 }
+            })
+
+            local parsers = {
+                "c",
+                "go",
+                "helm",
+                "html",
+                "javascript",
+                "lua",
+                "python",
+                "query",
+                "starlark",
+                "vim",
+                "vimdoc",
+                "yaml",
+            }
+
+            -- Install any missing parsers into the treesitter install dir
+            local parser_dir = vim.fn.stdpath('data') .. '/site/parser'
+            local missing = {}
+            for _, lang in ipairs(parsers) do
+                if vim.fn.filereadable(parser_dir .. '/' .. lang .. '.so') == 0 then
+                    table.insert(missing, lang)
+                end
+            end
+            if #missing > 0 then
+                require('nvim-treesitter').install(missing):wait(300000)
+            end
+
+            -- Enable highlighting and indentation for the installed languages
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = parsers,
+                callback = function()
+                    local ok = pcall(vim.treesitter.start)
+                    if ok then
+                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    end
+                end,
             })
         end
     },
